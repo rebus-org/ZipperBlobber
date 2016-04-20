@@ -49,3 +49,8 @@ invoke the tool to ZIP & BLOB that directory and save it into a container called
 which resulted in this:
 
 ![](stuff/zb4.png)
+
+On the storage account I now have a container called `fm-events` with a bunch
+of ZIP files stored as block blobs:
+
+![](/stuff/zb5.png)
