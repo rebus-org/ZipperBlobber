@@ -48,10 +48,16 @@ namespace ZipperBlobber.Commands
                 {
                     Log.Information("Zipping directory {DirectoryPath}", directoryInfo.FullName);
 
-                    foreach (var file in directoryInfo.GetFiles("*.*"))
+                    var basePath = new Uri(directoryInfo.FullName);
+
+                    foreach (var file in directoryInfo.GetFiles("*.*", SearchOption.AllDirectories))
                     {
+                        var filePath = new Uri(file.FullName);
+
                         totalFileSizeBytes += file.Length;
-                        var entryName = Path.GetFileName(file.FullName);
+
+                        var entryName = basePath.MakeRelativeUri(filePath).ToString()
+                            .Replace('/', Path.DirectorySeparatorChar);
 
                         Log.Debug("Adding {EntryName}", entryName);
 
