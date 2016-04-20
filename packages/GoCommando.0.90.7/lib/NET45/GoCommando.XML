@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GoCommando</name>
+    </assembly>
+    <members>
+        <member name="T:GoCommando.DescriptionAttribute">
+            <summary>
+            Apply this attribute to a property of a command class (which is also decorated with <see cref="T:GoCommando.ParameterAttribute"/>) in
+            order to provide a description of the parameter
+            </summary>
+        </member>
+        <member name="P:GoCommando.DescriptionAttribute.DescriptionText">
+            <summary>
+            Gets the description text
+            </summary>
+        </member>
+        <member name="M:GoCommando.DescriptionAttribute.#ctor(System.String)">
+            <summary>
+            Constructs the attribute
+            </summary>
+        </member>
+        <member name="T:GoCommando.ExampleAttribute">
+            <summary>
+            Apply one or more of these to a command property to show examples on how this particular parameter can be used
+            </summary>
+        </member>
+        <member name="P:GoCommando.ExampleAttribute.ExampleValue">
+            <summary>
+            Gets the example text
+            </summary>
+        </member>
+        <member name="M:GoCommando.ExampleAttribute.#ctor(System.String)">
+            <summary>
+            Constructs the attribute
+            </summary>
+        </member>
+        <member name="T:GoCommando.CustomExitCodeException">
+            <summary>
+            Exception that can be used to exit the program with a custom exit code
+            </summary>
+        </member>
+        <member name="M:GoCommando.CustomExitCodeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructs the exception
+            </summary>
+        </member>
+        <member name="M:GoCommando.CustomExitCodeException.#ctor(System.Int32,System.String)">
+            <summary>
+            Constructs the exception
+            </summary>
+        </member>
+        <member name="P:GoCommando.CustomExitCodeException.ExitCode">
+            <summary>
+            Gets the exit code that the program must exit with
+            </summary>
+        </member>
+        <member name="T:GoCommando.ICommand">
+            <summary>
+            Implement this interface on each command
+            </summary>
+        </member>
+        <member name="M:GoCommando.ICommand.Run">
+            <summary>
+            Main run method that is invoked by GoCommando
+            </summary>
+        </member>
+        <member name="T:GoCommando.BannerAttribute">
+            <summary>
+            Apply this attribute to the class that has your <code>Main</code> method in order to have a nice banner printed out when the program starts
+            </summary>
+        </member>
+        <member name="P:GoCommando.BannerAttribute.BannerText">
+            <summary>
+            Gets the banner text
+            </summary>
+        </member>
+        <member name="M:GoCommando.BannerAttribute.#ctor(System.String)">
+            <summary>
+            Constructs the attribute
+            </summary>
+        </member>
+        <member name="T:GoCommando.CommandAttribute">
+            <summary>
+            Attribute that can be applied to a class that represents a command. The class must implement <see cref="T:GoCommando.ICommand"/>
+            </summary>
+        </member>
+        <member name="P:GoCommando.CommandAttribute.Command">
+            <summary>
+            Gets the name of the command
+            </summary>
+        </member>
+        <member name="P:GoCommando.CommandAttribute.Group">
+            <summary>
+            Gets the name of the command's group (if any). Grouping commands affects how they are presented when printing
+            help texts
+            </summary>
+        </member>
+        <member name="M:GoCommando.CommandAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Constructs the attribute
+            </summary>
+        </member>
+        <member name="T:GoCommando.Go">
+            <summary>
+            Here's how to go commando: 1. <code>Go.Run()</code>
+            </summary>
+        </member>
+        <member name="M:GoCommando.Go.Run">
+            <summary>
+            Call this method from your <code>Main</code> method
+            </summary>
+        </member>
+        <member name="T:GoCommando.GoCommandoException">
+            <summary>
+            Friendly exception that can be thrown in cases where you want the program to exit with
+            a nice, human-readable message. Only the message will be shown.
+            </summary>
+        </member>
+        <member name="M:GoCommando.GoCommandoException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructs the exception
+            </summary>
+        </member>
+        <member name="M:GoCommando.GoCommandoException.#ctor(System.String)">
+            <summary>
+            Constructs the exception
+            </summary>
+        </member>
+        <member name="T:GoCommando.ParameterAttribute">
+            <summary>
+            Apply this attribute to a property of a command class (i.e. one that implements <see cref="T:GoCommando.ICommand"/>)
+            </summary>
+        </member>
+        <member name="P:GoCommando.ParameterAttribute.Name">
+            <summary>
+            Gets the primary parameter name
+            </summary>
+        </member>
+        <member name="P:GoCommando.ParameterAttribute.ShortName">
+            <summary>
+            Gets a shorthand for the parameter (or null if none has been specified)
+            </summary>
+        </member>
+        <member name="P:GoCommando.ParameterAttribute.Optional">
+            <summary>
+            Gets whether this parameter is optional
+            </summary>
+        </member>
+        <member name="P:GoCommando.ParameterAttribute.DefaultValue">
+            <summary>
+            Gets a default value for the parameter (or null if none has been specified)
+            </summary>
+        </member>
+        <member name="P:GoCommando.ParameterAttribute.AllowAppSetting">
+            <summary>
+            Gets whether this parameter can have its value resolved from the <code>&lt;appSettings&gt;</code> section of the application configuration file.
+            If the value is provided with a command-line switch, the provided value takes precedence.
+            </summary>
+        </member>
+        <member name="P:GoCommando.ParameterAttribute.AllowConnectionString">
+            <summary>
+            Gets whether this parameter can have its value resolved from the <code>&lt;connectionStrings&gt;</code> section of the application configuration file.
+            If the value is provided with a command-line switch, the provided value takes precedence.
+            </summary>
+        </member>
+        <member name="P:GoCommando.ParameterAttribute.AllowEnvironmentVariable">
+            <summary>
+            Gets whether this parameter can have its value resolved from an environment variable with the same name as specified by <see cref="P:GoCommando.ParameterAttribute.Name"/>
+            If the value is provided with a command-line switch, the provided value takes precedence.
+            </summary>
+        </member>
+        <member name="M:GoCommando.ParameterAttribute.#ctor(System.String,System.String,System.Boolean,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Constructs the parameter attribute
+            </summary>
+            <param name="name">Primary name of the parameter</param>
+            <param name="shortName">Optional shorthand of the parameter</param>
+            <param name="optional">Indicates whether the parameter MUST be specified or can be omitted</param>
+            <param name="defaultValue">Provides a default value to use when other values could not be found</param>
+            <param name="allowAppSetting">
+            Indicates whether parameter value resolution can go and look in the <code>&lt;appSettings&gt;</code> section of
+            the current application configuration file for a value. Will look for the key specified by <paramref name="name"/>
+            </param>
+            <param name="allowConnectionString">
+            Indicates whether parameter value resolution can go and look in the <code>&lt;connectionStrings&gt;</code> section of
+            the current application configuration file for a value. Will look for the name specified by <paramref name="name"/>
+            </param>
+            <param name="allowEnvironmentVariable">
+            Indicates whether parameter value resolution can go and look for an environment variable for a value.
+            Will look for the name specified by <paramref name="name"/>
+            </param>
+        </member>
+    </members>
+</doc>
