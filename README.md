@@ -16,7 +16,7 @@ First you download & build ZipperBlobber. Then you run ZipperBlobber now by typi
 
 and it should look somewhat like this:
 
-![/stuff/zb1.png]()
+![](stuff/zb1.png)
 
 which means that it has a single command: `run`. Let's invoke it with the `run`
 command:
@@ -25,7 +25,7 @@ command:
 
 which should result in a message saying that it needs three paramters:
 
-![stuff/zb2.png]()
+![](stuff/zb2.png)
 
 The `CONN` string next to the `storage` parameter means that it can pick up the
 parameter from the `<connectionStrings>` section of the application configuration
@@ -38,7 +38,7 @@ only two parameters are now missing:
 
     > zipperblobber run
 
-![stuff/zb3.png]()
+![](stuff/zb3.png)
 
 On my machine I had a MongoDB database dump in `D:\mongodumps\fm-events`, so I now
 invoke the tool to ZIP & BLOB that directory and save it into a container called
@@ -48,4 +48,4 @@ invoke the tool to ZIP & BLOB that directory and save it into a container called
 
 which resulted in this:
 
-![stuff/zb4.png]()
+![](stuff/zb4.png)
