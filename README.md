@@ -7,7 +7,7 @@ can probably be used for other things as well.
 
 ## Example
 
-Imagine that you have made a `mongodump` somewhere, e.g. in `C:\temp\dump`, and
+Imagine that you have made a `mongodump` in some directory somewhere, and
 now you would like to ZIP & BLOB the contents of that directory.
 
 First you download & build ZipperBlobber. Then you run ZipperBlobber now by typing in
