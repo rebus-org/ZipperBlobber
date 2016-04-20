@@ -16,7 +16,7 @@ First you download & build ZipperBlobber. Then you run ZipperBlobber now by typi
 
 and it should look somewhat like this:
 
-![stuff/zb1.png]()
+![/stuff/zb1.png]()
 
 which means that it has a single command: `run`. Let's invoke it with the `run`
 command:
