@@ -10,6 +10,7 @@ using Serilog;
 namespace ZipperBlobber.Commands
 {
     [Command("run")]
+    [Description("Zips & Blobs a directory of files")]
     public class RunCommand : ICommand
     {
         [Parameter("storage", allowConnectionString: true)]
