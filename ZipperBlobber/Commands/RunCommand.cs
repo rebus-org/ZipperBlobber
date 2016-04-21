@@ -31,9 +31,16 @@ namespace ZipperBlobber.Commands
             var directoryInfo = GetDirectoryInfo();
             var zipFilePath = GetTempFileName();
 
-            Zip(directoryInfo, zipFilePath);
+            try
+            {
+                Zip(directoryInfo, zipFilePath);
 
-            Upload(zipFilePath, cloudBlobContainer);
+                Upload(zipFilePath, cloudBlobContainer);
+            }
+            finally
+            {
+                CleanUp(zipFilePath);
+            }
         }
 
         static void Zip(DirectoryInfo directoryInfo, string zipFilePath)
@@ -74,7 +81,7 @@ namespace ZipperBlobber.Commands
 
             var compressedFileSizeBytes = new FileInfo(zipFilePath).Length;
 
-            Log.Information("Done zipping! (size {PreviousFileSizeMB} MB => {CompressedFileSizeMB} MB)", 
+            Log.Information("Done zipping! (size {PreviousFileSizeMB} MB => {CompressedFileSizeMB} MB)",
                 GetMb(totalFileSizeBytes), GetMb(compressedFileSizeBytes));
         }
 
@@ -84,7 +91,7 @@ namespace ZipperBlobber.Commands
             var blobName = $"{now:yyyyMMdd}-{now:HHmmss}.zip";
             var stopwatch = Stopwatch.StartNew();
 
-            Log.Information("Uploading file {FilePath} to blob {BlobName} in container {ContainerName}", 
+            Log.Information("Uploading file {FilePath} to blob {BlobName} in container {ContainerName}",
                 filePath, blobName, cloudBlobContainer.Name);
 
             var blob = cloudBlobContainer.GetBlockBlobReference(blobName);
@@ -92,6 +99,22 @@ namespace ZipperBlobber.Commands
             blob.UploadFromFile(filePath);
 
             Log.Information("Done uploading! (elapsed {ElapsedSeconds} s)", stopwatch.Elapsed.TotalSeconds);
+        }
+
+        static void CleanUp(string zipFilePath)
+        {
+            try
+            {
+                if (!File.Exists(zipFilePath)) return;
+
+                Log.Information("Deleting ZIP file {ZipFilePath}", zipFilePath);
+
+                File.Delete(zipFilePath);
+            }
+            catch (Exception exception)
+            {
+                Log.Warning(exception, "Could not delete ZIP file");
+            }
         }
 
         static double GetMb(long byteCount)
